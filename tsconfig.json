@@ -2,6 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "allowJs": true,
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
@@ -22,6 +23,13 @@
       "es2018", 
       "dom"
     ],
+    "paths": {
+      "@env": ["src/environments/environment"],
+      "@shared/*": ["src/app/shared/*"],
+      "@core/*": ["src/app/core/*"],
+      "@features/*": ["src/app/features/*"],
+      "@views/*": ["src/app/views/*"],
+    },
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {

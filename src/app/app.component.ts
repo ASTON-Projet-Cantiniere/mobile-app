@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,30 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  title = 'La Cantinière';
+  private location: string = '';
+  public isLoading: boolean = false;
+
+  constructor(public router: Router, public route: ActivatedRoute) {
+    this.location = this.router.url;
+
+    this.router.events.subscribe(event => {
+
+      switch (true) {
+        case event instanceof NavigationStart: {
+          this.isLoading = true;
+          break;
+        }
+        case event instanceof NavigationEnd:
+        case event instanceof NavigationCancel:
+        case event instanceof NavigationError: {
+          this.isLoading = false;
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+    });
+  }
 }

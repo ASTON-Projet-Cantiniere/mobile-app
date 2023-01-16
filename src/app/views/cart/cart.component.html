@@ -1,0 +1,28 @@
+<div class="justify-center">
+  <div class="cart">
+    <div class="cart-items-container">
+      <div class="day-container" *ngFor="let day of days()">
+        <h2>{{day}}</h2>
+        <div class="cart-item" *ngFor="let item of getItemByDay(day)">
+          <div class="cart-item-left">
+            <span class="cart-item-title">{{item.menu?.label ?? item.meal!.label}}</span>
+            <span class="cart-item-quantity">{{item.quantity}}*</span>
+            <span class="cart-item-price">{{item.menu?.priceDF ?? item.meal!.priceDF}}€</span>
+          </div>
+          <div class="cart-item-right">
+            <button (click)="removeItemFromCart(item)" class="remove-btn">supprimer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cart-controls">
+      <h2>Wallet : {{wallet()}} €</h2>
+      <div class="cart-total">
+        <div class="cart-total-title"><span>
+          Total {{getTotalPrice()}}€
+        </span></div>
+        <button class="cart-button" (click)="validOrder()">Valider</button>
+      </div>
+    </div>
+  </div>
+</div>
